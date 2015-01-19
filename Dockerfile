@@ -9,5 +9,6 @@ RUN cat stage3-amd64-nomultilib-20141204.tar.bz2 | /openssl dgst -whirlpool 2>&1
 RUN wget http://216.165.129.135/snapshots/portage-latest.tar.bz2
 RUN wget http://216.165.129.135/snapshots/portage-latest.tar.bz2.gpgsig
 RUN /gpg2 --verify portage-latest.tar.bz2.gpgsig portage-latest.tar.bz2
-RUN tar -xf stage3-amd64-nomultilib-20141204.tar.bz2 
+RUN /bzip2 -d stage3-amd64-nomultilib-20141204.tar.bz2
+RUN tar --exclude ./sys/.keep --exclude ./etc/hosts -xf stage3-amd64-nomultilib-20141204.tar
 RUN tar -C /usr -xf portage-latest.tar.bz2
